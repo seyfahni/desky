@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="80.91217mm"
-   height="101.84916mm"
-   viewBox="0 0 80.91217 101.84916"
+   width="85.473007mm"
+   height="106.19775mm"
+   viewBox="0 0 85.473006 106.19775"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
@@ -44,15 +44,15 @@
     <marker
        style="overflow:visible"
        id="DotL"
-       refX="0.0"
-       refY="0.0"
+       refX="0"
+       refY="0"
        orient="auto"
        inkscape:stockid="DotL"
        inkscape:isstock="true">
       <path
-         transform="scale(0.8) translate(7.4, 1)"
-         style="fill-rule:evenodd;stroke:#ff6600;stroke-width:1pt;stroke-opacity:1;fill:#ff6600;fill-opacity:1"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         style="fill:#ff6600;fill-opacity:1;fill-rule:evenodd;stroke:#ff6600;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
          id="path990" />
     </marker>
     <linearGradient
@@ -61,7 +61,7 @@
        id="linearGradient1219"
        x1="52.889629"
        y1="62.151836"
-       x2="72.454377"
+       x2="72.454376"
        y2="95.227371"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(-8.0659477,1.2775806)" />
@@ -85,8 +85,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="152.27781"
-     inkscape:cy="176.41035"
+     inkscape:cx="160.99607"
+     inkscape:cy="198.09421"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -112,7 +112,12 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-3.7284896,-30.543906)">
+     transform="translate(-1.4217843,-28.088399)">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 24.126599,64.043557 C 17.779304,71.357764 -0.55420111,83.198549 1.5960959,104.52843 3.5484513,123.89483 16.323923,132.73556 36.049223,134.12142 56.627,135.56717 78.883203,127.42848 84.232121,112.36879 89.137547,98.557737 88.089977,84.960106 74.053602,67.866577 72.623078,66.124482 85.04322,42.66517 65.080442,31.183916 52.6359,24.026648 39.838572,31.463396 35.551491,31.895629 c -2.584263,0.260551 -3.263277,-0.32838 -5.8133,0.165265 -4.626283,0.895577 -6.544318,2.593204 -9.356717,5.219643 -1.277541,1.193068 -4.988113,1.725179 -5.755638,3.295666 -0.769281,1.574082 -0.253263,4.172127 1.225905,5.111056 1.525348,0.968242 3.619499,-0.45505 5.307496,-1.099134 2.440897,-0.931366 7.336097,-6.001633 6.14693,-3.675412 -2.559503,5.006843 -3.666437,4.083625 -4.16846,11.023545 -0.526679,7.280755 3.664398,9.024221 0.988892,12.107299 z"
+       id="path917"
+       sodipodi:nodetypes="sssssssssssssss" />
     <path
        style="fill:#28170b;stroke:#ffffff;stroke-width:2.065;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 29.603199,65.192244 C -11.467142,92.729319 4.8725286,127.75466 31.998497,130.9034 69.186499,135.22013 103.89384,108.36736 69.490674,67.846475 89.095517,13.961149 9.4259218,26.137987 29.603199,65.192244 Z"
@@ -165,7 +170,7 @@
        rx="27.769699"
        ry="15.811343" />
     <rect
-       style="fill:url(#radialGradient1231);fill-opacity:1.0;stroke:none;stroke-width:2.565;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:url(#radialGradient1231);fill-opacity:1;stroke:none;stroke-width:2.565;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect1223"
        width="43.110104"
        height="29.018522"
