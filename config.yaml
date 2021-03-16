@@ -1,0 +1,17 @@
+---
+window:
+  title: "Desky"
+  background: 0x000000
+assets:
+  character:
+    file: "assets/shapeblob.svg"
+    position:
+      x: 0
+      y: 135
+  speech_bubble:
+    file: "assets/bubble.svg"
+    position:
+      x: 60
+      y: 0
+    active: false
+messages:
