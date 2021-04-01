@@ -14,4 +14,11 @@ assets:
       x: 60
       y: 0
     active: false
-messages:
+
+trigger:
+  - every: "30s"
+  - on:
+      - "12:30"
+      - "12:40"
+      - "12:50"
+      - "13:00"

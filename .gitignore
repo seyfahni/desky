@@ -6,3 +6,12 @@ venv/
 
 # Python cache
 __pycache__/
+
+# Python wheels
+*.whl
+
+# Custom config
+config.yaml
+
+# Generated region masks
+*_region_mask.png
