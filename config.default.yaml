@@ -16,9 +16,9 @@ assets:
     active: false
 
 trigger:
-  - every: "30s"
+  - every: "2min 30s"
+  - every: "4 hours"
   - on:
-      - "12:30"
-      - "12:40"
-      - "12:50"
-      - "13:00"
+      - "13:02"
+      - "15:55:55"
+  - on: "18:00"
