@@ -6,6 +6,8 @@ import wx.svg
 from PIL import Image
 from ruamel.yaml import YAML
 
+from desky import trigger
+
 
 def prepare_image(image_file):
     file_without_extension, image_type = os.path.splitext(image_file)
@@ -93,8 +95,11 @@ class DeskyFrame(wx.Frame):
         self.active_region = wx.Region()
         self.calculate_active_region()
 
+        self.trigger = trigger.load_trigger(config.get('trigger', []))
+        self.trigger = self.trigger.activate()
+
         self.timer = wx.Timer(self, 1)
-        self.timer.Start(2000)
+        self.timer.StartOnce(self.trigger.millis_until_activation())
 
         self.Bind(wx.EVT_PAINT, self.on_paint)
         self.Bind(wx.EVT_TIMER, self.on_timer)
@@ -118,6 +123,9 @@ class DeskyFrame(wx.Frame):
         self.assets['speech_bubble'].toggle_active()
         self.calculate_active_region()
         self.Refresh()
+
+        self.trigger = self.trigger.activate()
+        self.timer.StartOnce(self.trigger.millis_until_activation())
 
     def calculate_active_region(self):
         self.active_region.Clear()

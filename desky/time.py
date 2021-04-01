@@ -7,6 +7,26 @@ duration_pattern = re.compile(r'(\d+)\s*([a-zA-Z]*)')
 
 
 def parse_time_duration(time_duration_string: str):
+    """
+    Parse strings depicting a duration to a duration in milli seconds.
+
+    The format follows the pattern "5 minutes 3 seconds". Units can be shortened until they become ambiguous, in that
+    case the shortest unit will be used. No unit equals milliseconds, the unit "m" means minutes.
+
+     Possible units:
+    - milliseconds / ms
+    - seconds
+    - minutes (m will resolve as minutes instead of milliseconds)
+    - hours
+    - days
+    - weeks
+    - months
+    - years
+    - century / centuries
+
+    :param time_duration_string: string to parse
+    :return: duration in milliseconds
+    """
     time = 0
     for time_duration_match in duration_pattern.finditer(time_duration_string):
         time_in_units = int(time_duration_match.group(1))
@@ -16,7 +36,7 @@ def parse_time_duration(time_duration_string: str):
 
 
 def time_to_milli_seconds(time: int, unit: str) -> int:
-    if unit and 'milliseconds'.startswith(unit):
+    if unit and not unit == 'm' and ('milliseconds'.startswith(unit) or 'ms' == unit):
         return time
     time *= 1000
     if 'seconds'.startswith(unit):
