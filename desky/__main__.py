@@ -46,13 +46,13 @@ class GraphicAsset:
         region_mask = wx.Bitmap(prepared_images['region_mask'])
         assert region_mask.Size == self.image.Size
         self.size = region_mask.Size
-        offset_config = config['position']
-        self.offset = Point(offset_config['x'], offset_config['y'])
+        offset_config = config.get('position', {'x': 0, 'y': 0})
+        self.offset = Point(offset_config.get('x', 0), offset_config.get('y', 0))
         self.region = wx.Region(region_mask, wx.Colour(0, 0, 0))
         box = self.region.GetBox()
         self.move(-box.GetX(), -box.GetY())
         self.region.Offset(self.offset.x, self.offset.y)
-        self.active = config['active'] if 'active' in config else True
+        self.active = config.get('active', True)
 
     def move(self, offset_x, offset_y):
         self.region.Offset(offset_x, offset_y)
@@ -94,7 +94,7 @@ class DeskyFrame(wx.Frame):
         self.calculate_active_region()
 
         self.timer = wx.Timer(self, 1)
-        print('timer started:', self.timer.Start(2000))
+        self.timer.Start(2000)
 
         self.Bind(wx.EVT_PAINT, self.on_paint)
         self.Bind(wx.EVT_TIMER, self.on_timer)

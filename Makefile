@@ -4,7 +4,7 @@ SHELL := /bin/bash
 IN_VENV := { [[ -n "$${VIRTUAL_ENV+x}" ]] || source venv/bin/activate ; } &&
 
 run : init
-	@${IN_VENV} python desky
+	@${IN_VENV} python -m desky
 
 init : venv requirements.txt
 	@${IN_VENV} pip install -qr requirements.txt
