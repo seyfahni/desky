@@ -1,9 +1,7 @@
 import pathlib
-import collections
 import wx
 from ruamel.yaml import YAML
-
-from desky import trigger, asset
+from . import trigger, asset
 
 
 class DeskyFrame(wx.Frame):
@@ -13,8 +11,7 @@ class DeskyFrame(wx.Frame):
         title = window_config['title']
         self.background_color = wx.Colour(window_config['background'])
 
-        self.assets = collections.OrderedDict()
-        self.load_assets(config)
+        self.assets = asset.load_assets(config.get('assets', []))
 
         full_region = wx.Region()
         for single_asset in self.assets.values():
@@ -39,13 +36,7 @@ class DeskyFrame(wx.Frame):
         self.Bind(wx.EVT_PAINT, self.on_paint)
         self.Bind(wx.EVT_TIMER, self.on_timer)
 
-    def load_assets(self, config):
-        self.assets.clear()
-        assets_config = config['assets']
-        for asset_id, asset_config in assets_config.items():
-            self.assets[asset_id] = asset.GraphicAsset(asset_config)
-
-    def on_paint(self, event):
+    def on_paint(self, event: wx.PaintEvent):
         dc = wx.PaintDC(self)
         dc.SetBackground(wx.Brush(self.background_color, wx.BRUSHSTYLE_SOLID))
         dc.Clear()
@@ -54,13 +45,13 @@ class DeskyFrame(wx.Frame):
         for a in self.assets.values():
             a.draw_active(gc)
 
-    def on_timer(self, event):
+    def on_timer(self, event: wx.TimerEvent):
         self.assets['speech_bubble'].toggle_active()
         self.calculate_active_region()
         self.Refresh()
 
         self.trigger = self.trigger.activate()
-        self.timer.StartOnce(self.trigger.millis_until_activation())
+        event.GetTimer().StartOnce(self.trigger.millis_until_activation())
 
     def calculate_active_region(self):
         self.active_region.Clear()

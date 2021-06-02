@@ -9,6 +9,7 @@ def prepare_image(image_file):
     file_without_extension, image_type = os.path.splitext(image_file)
 
     if image_type.casefold() == ".svg":
+        # noinspection PyArgumentList
         svg_image = wx.svg.SVGimage.CreateFromFile(image_file)
         image_file = file_without_extension + ".png"
         width = math.ceil(svg_image.width)
@@ -42,8 +43,8 @@ class GraphicAsset:
         prepared_images = prepare_image(config['file'])
         self.image = wx.Bitmap(prepared_images['image'])
         region_mask = wx.Bitmap(prepared_images['region_mask'])
-        assert region_mask.Size == self.image.Size
-        self.size = region_mask.Size
+        assert region_mask.GetSize() == self.image.GetSize()
+        self.size = region_mask.GetSize()
         offset_config = config.get('position', {'x': 0, 'y': 0})
         self.offset = Point(offset_config.get('x', 0), offset_config.get('y', 0))
         self.region = wx.Region(region_mask, wx.Colour(0, 0, 0))
@@ -65,3 +66,14 @@ class GraphicAsset:
 
     def toggle_active(self):
         self.active = not self.active
+
+
+def load_assets(assets_config):
+    assets = collections.OrderedDict()
+    for asset_id, asset_config in assets_config.items():
+        if 'file' in asset_config:
+            # TODO: Move config extraction from constructor to here (or sub-methods)
+            assets[asset_id] = GraphicAsset(asset_config)
+        else:
+            raise NotImplementedError('Unknown trigger: ' + asset_id, asset_config)
+    return assets

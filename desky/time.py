@@ -60,13 +60,13 @@ def time_to_milli_seconds(time: int, unit: str) -> int:
     time *= 100
     if 'century'.startswith(unit) or 'centuries'.startswith(unit):
         return time
-    raise InvalidUnitException('Invalid unit: ' + unit)
+    raise InvalidUnitException(message='Invalid unit: ' + unit)
 
 
 def parse_time_instant(time_instant_string: str) -> wx.DateTime:
     time = wx.DateTime()
     if time.ParseTime(time_instant_string) == -1:
-        raise InvalidInstantException('Invalid instant: ' + time_instant_string)
+        raise InvalidInstantException(message='Invalid instant: ' + time_instant_string)
     return time
 
 
@@ -78,8 +78,7 @@ def set_to_future(date_time: wx.DateTime, now: wx.DateTime = None) -> wx.DateTim
     :param now: Override now to compare to
     :return: same modified DateTime
     """
-    if now is None:
-        now = wx.DateTime.Now()
+    now = to_date_time(now)
     diff = now.DiffAsDateSpan(date_time)
     date_time.Add(diff)
     now.IsLaterThan(date_time) and date_time.Add(wx.DateSpan.Day())
@@ -98,7 +97,7 @@ def to_milli_seconds(now):
         return now.GetValue()
     if isinstance(now, int):
         return now
-    raise TimeException('cannot convert ' + type(now) + ' to milli seconds')
+    raise TimeException(message='cannot convert ' + type(now) + ' to milli seconds')
 
 
 def to_date_time(now) -> wx.DateTime:
@@ -109,7 +108,7 @@ def to_date_time(now) -> wx.DateTime:
         date_time.SetTimeT(now // 1000)
         date_time.SetMillisecond(now % 1000)
         return date_time
-    raise TimeException('cannot convert ' + type(now) + ' to date time')
+    raise TimeException(message='cannot convert ' + type(now) + ' to date time')
 
 
 def now_millis():
@@ -118,17 +117,17 @@ def now_millis():
 
 class TimeException(Exception):
 
-    def __init__(self, *args: object) -> None:
+    def __init__(self, *args: object, message=None) -> None:
         super().__init__(*args)
+        self._message = message
+
+    def get_message(self):
+        return self._message
 
 
 class InvalidInstantException(TimeException):
-
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+    pass
 
 
 class InvalidUnitException(TimeException):
-
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
+    pass
