@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from abc import ABC
+
 import wx
 from . import time, denormalize
 
 
-class ActiveTimeTrigger:
+class ActiveTimeTrigger(ABC):
 
     def millis_until_activation(self, now=None) -> int:
         raise NotImplementedError()
@@ -27,7 +29,7 @@ class ActiveTimeTrigger:
         return self.millis_until_activation() <= 0
 
 
-class TimeTrigger:
+class TimeTrigger(ABC):
 
     def activate(self, now=None) -> ActiveTimeTrigger:
         raise NotImplementedError()
@@ -175,8 +177,11 @@ class IntervalTriggerDenormalizer(denormalize.Denormalizer):
         millis_interval = time.parse_time_duration(trigger_interval)
         return IntervalTrigger(millis_interval)
 
-    def supports_denormalization(self, config):
-        return 'every' in config
+    def supports_denormalization(self, config) -> bool:
+        try:
+            return 'every' in config
+        except TypeError:
+            return False
 
 
 def _create_instant_trigger(trigger_instant):
@@ -199,18 +204,20 @@ class InstantTriggerDenormalizer(denormalize.Denormalizer):
             trigger_list.append(single_trigger)
         return TimeInstantListTrigger(trigger_list)
 
-    def supports_denormalization(self, config):
-        return 'on' in config
+    def supports_denormalization(self, config) -> bool:
+        try:
+            return 'on' in config
+        except TypeError:
+            return False
 
 
-trigger_denormalizer = denormalize.PriorityDenormalizer()
-trigger_denormalizer.register(IntervalTriggerDenormalizer())
-trigger_denormalizer.register(InstantTriggerDenormalizer())
+_single_trigger_denormalizer = denormalize.PriorityDenormalizer()
+_single_trigger_denormalizer.register(IntervalTriggerDenormalizer())
+_single_trigger_denormalizer.register(InstantTriggerDenormalizer())
+
+_trigger_denormalizer = denormalize.ListDenormalizer(_single_trigger_denormalizer, TriggerList)
 
 
 def load_trigger(config) -> TriggerList:
-    trigger_list = TriggerList()
-    for trigger_config in config:
-        trigger_list.append(trigger_denormalizer.denormalize(trigger_config))
-    return trigger_list
-
+    if _trigger_denormalizer.supports_denormalization(config):
+        return _trigger_denormalizer.denormalize(config)
