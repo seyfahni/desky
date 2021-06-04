@@ -1,7 +1,8 @@
 ---
 window:
-  title: "Desky"
+  title: "Desktop Buddy"
   background: 0x000000
+
 assets:
   character:
     file: "assets/shapeblob.svg"

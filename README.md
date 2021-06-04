@@ -1,4 +1,4 @@
-# Desktop Helper "Desky"
+# Desktop Buddy
 
 A fully customizable cross-platform desktop companion.
 
