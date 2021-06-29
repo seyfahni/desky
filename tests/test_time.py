@@ -1,5 +1,5 @@
 import unittest
-from desky import time
+from desktop_buddy import time
 
 
 class TimeParseTest(unittest.TestCase):

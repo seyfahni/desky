@@ -1,8 +1,6 @@
 import unittest
-from desky import trigger
+from desktop_buddy import trigger
 
 
 class TriggerTest(unittest.TestCase):
-    def test_something(self):
-        trigger.TimeTrigger()
-        self.assertEqual(True, False)
+    pass

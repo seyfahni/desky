@@ -1,3 +1,7 @@
+altgraph==0.17
+numpy==1.20.1
+six==1.15.0
 wxPython~=4.1.1
-Pillow~=8.1.2
+Pillow~=8.2.0
 ruamel.yaml~=0.16.13
+pyinstaller==4.3

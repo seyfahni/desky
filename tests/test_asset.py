@@ -1,5 +1,5 @@
 import unittest
-from desky import asset
+from desktop_buddy import asset
 
 
 class AssetTest(unittest.TestCase):

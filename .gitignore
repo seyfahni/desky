@@ -1,17 +1,22 @@
-# venv
-venv/
-
-# PyCharm
+# IDE
+# - PyCharm
 .idea/
 
-# Python cache
+# Pyton
+# - venv
+venv/
+# - cache
 __pycache__/
-
-# Python wheels
+# - wheels
 *.whl
 
-# Custom config
-config.yaml
+# PyInstaller
+*.spec
+build/
+dist/
 
-# Generated region masks
+# Application
+# - custom config
+config.yaml
+# - generated region masks
 *_region_mask.png

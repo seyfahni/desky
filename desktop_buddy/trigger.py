@@ -211,11 +211,15 @@ class InstantTriggerDenormalizer(denormalize.Denormalizer):
             return False
 
 
+def _supply_trigger_list():
+    return TriggerList()
+
+
 _single_trigger_denormalizer = denormalize.PriorityDenormalizer()
 _single_trigger_denormalizer.register(IntervalTriggerDenormalizer())
 _single_trigger_denormalizer.register(InstantTriggerDenormalizer())
 
-_trigger_denormalizer = denormalize.ListDenormalizer(_single_trigger_denormalizer, TriggerList)
+_trigger_denormalizer = denormalize.ListDenormalizer(_single_trigger_denormalizer, _supply_trigger_list)
 
 
 def load_trigger(config) -> TriggerList:
